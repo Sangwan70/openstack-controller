@@ -1,0 +1,30 @@
+Last metadata expiration check: 4:57:40 ago on Sun 05 Sep 2021 01:29:25 AM EDT.
+rdo-release-victoria-2.el8.noarch.rpm           3.9 kB/s |  16 kB     00:04    
+Dependencies resolved.
+================================================================================
+ Package           Architecture Version                Repository          Size
+================================================================================
+Installing:
+ rdo-release       noarch       victoria-2.el8         @commandline        16 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 16 k
+Installed size: 12 k
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : rdo-release-victoria-2.el8.noarch                      1/1 
+  Verifying        : rdo-release-victoria-2.el8.noarch                      1/1 
+Installed products updated.
+
+Installed:
+  rdo-release-victoria-2.el8.noarch                                             
+
+Complete!

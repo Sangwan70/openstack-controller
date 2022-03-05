@@ -1,0 +1,67 @@
+Sourcing the admin credentials.
+Waiting for neutron to come up.
+Waiting for neutron agent neutron-l3-agent.
+linuxbridge-agent and dhcp-agent must be up before we can add interfaces.
+Waiting for neutron agent neutron-linuxbridge-agent.
+Waiting for neutron agent neutron-dhcp-agent.
+Creating the public network.
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        |                                      |
+| created_at                | 2021-09-05T11:41:35Z                 |
+| description               |                                      |
+| dns_domain                | None                                 |
+| id                        | fdc3402a-8a37-4419-abdd-7250c46c6dc2 |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | False                                |
+| is_vlan_transparent       | None                                 |
+| mtu                       | 1500                                 |
+| name                      | provider                             |
+| port_security_enabled     | True                                 |
+| project_id                | 95b394c19fd64dc5b1a81b1898254e38     |
+| provider:network_type     | flat                                 |
+| provider:physical_network | provider                             |
+| provider:segmentation_id  | None                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 1                                    |
+| router:external           | External                             |
+| segments                  | None                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tags                      |                                      |
+| updated_at                | 2021-09-05T11:41:35Z                 |
++---------------------------+--------------------------------------+
+Creating a subnet on the public network.
++----------------------+--------------------------------------+
+| Field                | Value                                |
++----------------------+--------------------------------------+
+| allocation_pools     | 203.0.113.101-203.0.113.200          |
+| cidr                 | 203.0.113.0/24                       |
+| created_at           | 2021-09-05T11:41:37Z                 |
+| description          |                                      |
+| dns_nameservers      | 8.8.8.8                              |
+| dns_publish_fixed_ip | None                                 |
+| enable_dhcp          | True                                 |
+| gateway_ip           | 203.0.113.1                          |
+| host_routes          |                                      |
+| id                   | b5069bd9-5081-4988-9a24-0572d1f6b296 |
+| ip_version           | 4                                    |
+| ipv6_address_mode    | None                                 |
+| ipv6_ra_mode         | None                                 |
+| name                 | provider                             |
+| network_id           | fdc3402a-8a37-4419-abdd-7250c46c6dc2 |
+| prefix_length        | None                                 |
+| project_id           | 95b394c19fd64dc5b1a81b1898254e38     |
+| revision_number      | 0                                    |
+| segment_id           | None                                 |
+| service_types        |                                      |
+| subnetpool_id        | None                                 |
+| tags                 |                                      |
+| updated_at           | 2021-09-05T11:41:37Z                 |
++----------------------+--------------------------------------+
+Waiting for DHCP namespace........................................................................................................................................................................................................................................................................................................................................................................................................

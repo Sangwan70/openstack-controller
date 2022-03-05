@@ -1,0 +1,495 @@
+Setting up placement database.
+Waiting for database server to come up.
+mysql cmd: CREATE DATABASE placement.
+mysql cmd: GRANT ALL ON placement.* TO 'placement'@'%' IDENTIFIED BY 'placementDBPass';.
+mysql cmd: GRANT ALL ON placement.* TO 'placement'@'localhost' IDENTIFIED BY 'placementDBPass';.
+Sourcing the admin credentials.
+Waiting for keystone to come up.
+Creating placement user and giving it the admin role.
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | 0bd4f75fae5b4e2cbf4e76a09ecb1699 |
+| name                | placement                        |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+Creating the Placement API entry in the service catalog.
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | Placement API                    |
+| enabled     | True                             |
+| id          | 6fa8fe1538a04f669c8f0064987c4c68 |
+| name        | placement                        |
+| type        | placement                        |
++-------------+----------------------------------+
+Creating placement endpoints.
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 884deeceb10541a39e7ef75862f33475 |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 6fa8fe1538a04f669c8f0064987c4c68 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 5ec205a88b4e4a45a48baa33d6ba9d68 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 6fa8fe1538a04f669c8f0064987c4c68 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | e2c3c632e55d4cf7b188546c31f4dec0 |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 6fa8fe1538a04f669c8f0064987c4c68 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
+Installing placement-api for controller node.
+Last metadata expiration check: 5:06:25 ago on Sun 05 Sep 2021 01:29:35 AM EDT.
+Dependencies resolved.
+================================================================================
+ Package                      Arch    Version         Repository           Size
+================================================================================
+Installing:
+ openstack-placement-api      noarch  4.0.0-1.el8     openstack-victoria   12 k
+Installing dependencies:
+ openstack-placement-common   noarch  4.0.0-1.el8     openstack-victoria   25 k
+ python3-microversion-parse   noarch  1.0.1-1.el8     openstack-victoria   32 k
+ python3-os-resource-classes  noarch  1.0.0-1.el8     openstack-victoria   17 k
+ python3-os-traits            noarch  2.4.0-2.el8     openstack-victoria   43 k
+ python3-placement            noarch  4.0.0-1.el8     openstack-victoria  250 k
+
+Transaction Summary
+================================================================================
+Install  6 Packages
+
+Total download size: 379 k
+Installed size: 1.2 M
+Downloading Packages:
+(1/6): openstack-placement-api-4.0.0-1.el8.noar  68 kB/s |  12 kB     00:00    
+(2/6): python3-microversion-parse-1.0.1-1.el8.n 115 kB/s |  32 kB     00:00    
+(3/6): openstack-placement-common-4.0.0-1.el8.n  89 kB/s |  25 kB     00:00    
+(4/6): python3-os-resource-classes-1.0.0-1.el8. 141 kB/s |  17 kB     00:00    
+(5/6): python3-os-traits-2.4.0-2.el8.noarch.rpm 244 kB/s |  43 kB     00:00    
+(6/6): python3-placement-4.0.0-1.el8.noarch.rpm 640 kB/s | 250 kB     00:00    
+--------------------------------------------------------------------------------
+Total                                           371 kB/s | 379 kB     00:01     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : python3-os-traits-2.4.0-2.el8.noarch                   1/6 
+  Installing       : python3-os-resource-classes-1.0.0-1.el8.noarch         2/6 
+  Installing       : python3-microversion-parse-1.0.1-1.el8.noarch          3/6 
+  Installing       : python3-placement-4.0.0-1.el8.noarch                   4/6 
+  Running scriptlet: openstack-placement-common-4.0.0-1.el8.noarch          5/6 
+  Installing       : openstack-placement-common-4.0.0-1.el8.noarch          5/6 
+  Installing       : openstack-placement-api-4.0.0-1.el8.noarch             6/6 
+  Running scriptlet: openstack-placement-api-4.0.0-1.el8.noarch             6/6 
+  Verifying        : openstack-placement-api-4.0.0-1.el8.noarch             1/6 
+  Verifying        : openstack-placement-common-4.0.0-1.el8.noarch          2/6 
+  Verifying        : python3-microversion-parse-1.0.1-1.el8.noarch          3/6 
+  Verifying        : python3-os-resource-classes-1.0.0-1.el8.noarch         4/6 
+  Verifying        : python3-os-traits-2.4.0-2.el8.noarch                   5/6 
+  Verifying        : python3-placement-4.0.0-1.el8.noarch                   6/6 
+Installed products updated.
+
+Installed:
+  openstack-placement-api-4.0.0-1.el8.noarch                                    
+  openstack-placement-common-4.0.0-1.el8.noarch                                 
+  python3-microversion-parse-1.0.1-1.el8.noarch                                 
+  python3-os-resource-classes-1.0.0-1.el8.noarch                                
+  python3-os-traits-2.4.0-2.el8.noarch                                          
+  python3-placement-4.0.0-1.el8.noarch                                          
+
+Complete!
+httpd server settings for Placement Service. 
+Setting placement database connection: mysql+pymysql://placement:placementDBPass@controller/placement.
+'/etc/placement/placement.conf' -> '/tmp/022_etc_placement_placement.conf.iniset'
+iniset /tmp/022_etc_placement_placement.conf.iniset placement_database connection mysql+pymysql://placement:placementDBPass@controller/placement
+'/etc/placement/placement.conf' -> '/tmp/023_etc_placement_placement.conf.iniset'
+iniset /tmp/023_etc_placement_placement.conf.iniset api auth_strategy keystone
+Configuring Placement services.
+'/etc/placement/placement.conf' -> '/tmp/024_etc_placement_placement.conf.iniset'
+iniset /tmp/024_etc_placement_placement.conf.iniset keystone_authtoken auth_url http://controller:5000/v3
+'/etc/placement/placement.conf' -> '/tmp/025_etc_placement_placement.conf.iniset'
+iniset /tmp/025_etc_placement_placement.conf.iniset keystone_authtoken memcached_servers controller:11211
+'/etc/placement/placement.conf' -> '/tmp/026_etc_placement_placement.conf.iniset'
+iniset /tmp/026_etc_placement_placement.conf.iniset keystone_authtoken auth_type password
+'/etc/placement/placement.conf' -> '/tmp/027_etc_placement_placement.conf.iniset'
+iniset /tmp/027_etc_placement_placement.conf.iniset keystone_authtoken project_domain_name Default
+'/etc/placement/placement.conf' -> '/tmp/028_etc_placement_placement.conf.iniset'
+iniset /tmp/028_etc_placement_placement.conf.iniset keystone_authtoken user_domain_name Default
+'/etc/placement/placement.conf' -> '/tmp/029_etc_placement_placement.conf.iniset'
+iniset /tmp/029_etc_placement_placement.conf.iniset keystone_authtoken project_name service
+'/etc/placement/placement.conf' -> '/tmp/030_etc_placement_placement.conf.iniset'
+iniset /tmp/030_etc_placement_placement.conf.iniset keystone_authtoken username placement
+'/etc/placement/placement.conf' -> '/tmp/031_etc_placement_placement.conf.iniset'
+iniset /tmp/031_etc_placement_placement.conf.iniset keystone_authtoken password placementPass
+Populating the placement database.
+Restarting httpd server.
+Sourcing the admin credentials.
+Waiting for keystone to come up.
+Performing status check.
++----------------------------------+
+| Upgrade Check Results            |
++----------------------------------+
+| Check: Missing Root Provider IDs |
+| Result: Success                  |
+| Details: None                    |
++----------------------------------+
+| Check: Incomplete Consumers      |
+| Result: Success                  |
+| Details: None                    |
++----------------------------------+
+Installing python3-pip.
+Last metadata expiration check: 5:06:53 ago on Sun 05 Sep 2021 01:29:35 AM EDT.
+Package python3-pip-9.0.3-19.el8.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+Installing the placement client.
+WARNING: Running pip install with root privileges is generally not a good idea. Try `pip3 install --user` instead.
+Requirement already satisfied: osc-placement in /usr/local/lib/python3.6/site-packages
+Requirement already satisfied: six>=1.10.0 in /usr/lib/python3.6/site-packages (from osc-placement)
+Requirement already satisfied: pbr>=2.0.0 in /usr/lib/python3.6/site-packages (from osc-placement)
+Requirement already satisfied: keystoneauth1>=3.3.0 in /usr/lib/python3.6/site-packages (from osc-placement)
+Requirement already satisfied: osc-lib>=1.2.0 in /usr/lib/python3.6/site-packages (from osc-placement)
+Requirement already satisfied: simplejson>=3.16.0 in /usr/lib64/python3.6/site-packages (from osc-placement)
+Requirement already satisfied: oslo.utils>=3.37.0 in /usr/lib/python3.6/site-packages (from osc-placement)
+Listing available resource classes and traits.
++----------------------------+
+| name                       |
++----------------------------+
+| DISK_GB                    |
+| FPGA                       |
+| IPV4_ADDRESS               |
+| MEMORY_MB                  |
+| MEM_ENCRYPTION_CONTEXT     |
+| NET_BW_EGR_KILOBIT_PER_SEC |
+| NET_BW_IGR_KILOBIT_PER_SEC |
+| NUMA_CORE                  |
+| NUMA_MEMORY_MB             |
+| NUMA_SOCKET                |
+| NUMA_THREAD                |
+| PCI_DEVICE                 |
+| PCPU                       |
+| PGPU                       |
+| SRIOV_NET_VF               |
+| VCPU                       |
+| VGPU                       |
+| VGPU_DISPLAY_HEAD          |
++----------------------------+
++---------------------------------------+
+| name                                  |
++---------------------------------------+
+| COMPUTE_ACCELERATORS                  |
+| COMPUTE_DEVICE_TAGGING                |
+| COMPUTE_GRAPHICS_MODEL_CIRRUS         |
+| COMPUTE_GRAPHICS_MODEL_GOP            |
+| COMPUTE_GRAPHICS_MODEL_NONE           |
+| COMPUTE_GRAPHICS_MODEL_QXL            |
+| COMPUTE_GRAPHICS_MODEL_VGA            |
+| COMPUTE_GRAPHICS_MODEL_VIRTIO         |
+| COMPUTE_GRAPHICS_MODEL_VMVGA          |
+| COMPUTE_GRAPHICS_MODEL_XEN            |
+| COMPUTE_IMAGE_TYPE_AKI                |
+| COMPUTE_IMAGE_TYPE_AMI                |
+| COMPUTE_IMAGE_TYPE_ARI                |
+| COMPUTE_IMAGE_TYPE_ISO                |
+| COMPUTE_IMAGE_TYPE_PLOOP              |
+| COMPUTE_IMAGE_TYPE_QCOW2              |
+| COMPUTE_IMAGE_TYPE_RAW                |
+| COMPUTE_IMAGE_TYPE_VDI                |
+| COMPUTE_IMAGE_TYPE_VHD                |
+| COMPUTE_IMAGE_TYPE_VHDX               |
+| COMPUTE_IMAGE_TYPE_VMDK               |
+| COMPUTE_MIGRATE_AUTO_CONVERGE         |
+| COMPUTE_MIGRATE_POST_COPY             |
+| COMPUTE_NET_ATTACH_INTERFACE          |
+| COMPUTE_NET_ATTACH_INTERFACE_WITH_TAG |
+| COMPUTE_NET_VIF_MODEL_E1000           |
+| COMPUTE_NET_VIF_MODEL_E1000E          |
+| COMPUTE_NET_VIF_MODEL_LAN9118         |
+| COMPUTE_NET_VIF_MODEL_NE2K_PCI        |
+| COMPUTE_NET_VIF_MODEL_NETFRONT        |
+| COMPUTE_NET_VIF_MODEL_PCNET           |
+| COMPUTE_NET_VIF_MODEL_RTL8139         |
+| COMPUTE_NET_VIF_MODEL_SPAPR_VLAN      |
+| COMPUTE_NET_VIF_MODEL_SRIOV           |
+| COMPUTE_NET_VIF_MODEL_VIRTIO          |
+| COMPUTE_NET_VIF_MODEL_VMXNET          |
+| COMPUTE_NET_VIF_MODEL_VMXNET3         |
+| COMPUTE_NODE                          |
+| COMPUTE_RESCUE_BFV                    |
+| COMPUTE_SAME_HOST_COLD_MIGRATE        |
+| COMPUTE_SECURITY_TPM_1_2              |
+| COMPUTE_SECURITY_TPM_2_0              |
+| COMPUTE_STATUS_DISABLED               |
+| COMPUTE_STORAGE_BUS_FDC               |
+| COMPUTE_STORAGE_BUS_IDE               |
+| COMPUTE_STORAGE_BUS_LXC               |
+| COMPUTE_STORAGE_BUS_SATA              |
+| COMPUTE_STORAGE_BUS_SCSI              |
+| COMPUTE_STORAGE_BUS_UML               |
+| COMPUTE_STORAGE_BUS_USB               |
+| COMPUTE_STORAGE_BUS_VIRTIO            |
+| COMPUTE_STORAGE_BUS_XEN               |
+| COMPUTE_TRUSTED_CERTS                 |
+| COMPUTE_VOLUME_ATTACH                 |
+| COMPUTE_VOLUME_ATTACH_WITH_TAG        |
+| COMPUTE_VOLUME_EXTEND                 |
+| COMPUTE_VOLUME_MULTI_ATTACH           |
+| HW_CPU_AARCH64_AES                    |
+| HW_CPU_AARCH64_ASIMD                  |
+| HW_CPU_AARCH64_ASIMDDP                |
+| HW_CPU_AARCH64_ASIMDHP                |
+| HW_CPU_AARCH64_ASIMDRDM               |
+| HW_CPU_AARCH64_ATOMICS                |
+| HW_CPU_AARCH64_CPUID                  |
+| HW_CPU_AARCH64_CRC32                  |
+| HW_CPU_AARCH64_DCPOP                  |
+| HW_CPU_AARCH64_EVTSTRM                |
+| HW_CPU_AARCH64_FCMA                   |
+| HW_CPU_AARCH64_FP                     |
+| HW_CPU_AARCH64_FPHP                   |
+| HW_CPU_AARCH64_JSCVT                  |
+| HW_CPU_AARCH64_LRCPC                  |
+| HW_CPU_AARCH64_PMULL                  |
+| HW_CPU_AARCH64_SHA1                   |
+| HW_CPU_AARCH64_SHA2                   |
+| HW_CPU_AARCH64_SHA3                   |
+| HW_CPU_AARCH64_SHA512                 |
+| HW_CPU_AARCH64_SM3                    |
+| HW_CPU_AARCH64_SM4                    |
+| HW_CPU_AARCH64_SVE                    |
+| HW_CPU_AMD_SEV                        |
+| HW_CPU_HYPERTHREADING                 |
+| HW_CPU_PPC64LE_POWER8                 |
+| HW_CPU_PPC64LE_POWER9                 |
+| HW_CPU_X86_3DNOW                      |
+| HW_CPU_X86_ABM                        |
+| HW_CPU_X86_AESNI                      |
+| HW_CPU_X86_AMD_IBPB                   |
+| HW_CPU_X86_AMD_NO_SSB                 |
+| HW_CPU_X86_AMD_SEV                    |
+| HW_CPU_X86_AMD_SSBD                   |
+| HW_CPU_X86_AMD_SVM                    |
+| HW_CPU_X86_AMD_VIRT_SSBD              |
+| HW_CPU_X86_ASF                        |
+| HW_CPU_X86_AVX                        |
+| HW_CPU_X86_AVX2                       |
+| HW_CPU_X86_AVX512BITALG               |
+| HW_CPU_X86_AVX512BW                   |
+| HW_CPU_X86_AVX512CD                   |
+| HW_CPU_X86_AVX512DQ                   |
+| HW_CPU_X86_AVX512ER                   |
+| HW_CPU_X86_AVX512F                    |
+| HW_CPU_X86_AVX512GFNI                 |
+| HW_CPU_X86_AVX512IFMA                 |
+| HW_CPU_X86_AVX512PF                   |
+| HW_CPU_X86_AVX512VAES                 |
+| HW_CPU_X86_AVX512VBMI                 |
+| HW_CPU_X86_AVX512VBMI2                |
+| HW_CPU_X86_AVX512VL                   |
+| HW_CPU_X86_AVX512VNNI                 |
+| HW_CPU_X86_AVX512VPCLMULQDQ           |
+| HW_CPU_X86_AVX512VPOPCNTDQ            |
+| HW_CPU_X86_BMI                        |
+| HW_CPU_X86_BMI2                       |
+| HW_CPU_X86_CLMUL                      |
+| HW_CPU_X86_F16C                       |
+| HW_CPU_X86_FMA3                       |
+| HW_CPU_X86_FMA4                       |
+| HW_CPU_X86_INTEL_MD_CLEAR             |
+| HW_CPU_X86_INTEL_PCID                 |
+| HW_CPU_X86_INTEL_SPEC_CTRL            |
+| HW_CPU_X86_INTEL_SSBD                 |
+| HW_CPU_X86_INTEL_VMX                  |
+| HW_CPU_X86_MMX                        |
+| HW_CPU_X86_MPX                        |
+| HW_CPU_X86_PDPE1GB                    |
+| HW_CPU_X86_SGX                        |
+| HW_CPU_X86_SHA                        |
+| HW_CPU_X86_SSE                        |
+| HW_CPU_X86_SSE2                       |
+| HW_CPU_X86_SSE3                       |
+| HW_CPU_X86_SSE41                      |
+| HW_CPU_X86_SSE42                      |
+| HW_CPU_X86_SSE4A                      |
+| HW_CPU_X86_SSSE3                      |
+| HW_CPU_X86_STIBP                      |
+| HW_CPU_X86_SVM                        |
+| HW_CPU_X86_TBM                        |
+| HW_CPU_X86_TSX                        |
+| HW_CPU_X86_VMX                        |
+| HW_CPU_X86_XOP                        |
+| HW_GPU_API_DIRECT2D                   |
+| HW_GPU_API_DIRECT3D_V10_0             |
+| HW_GPU_API_DIRECT3D_V10_1             |
+| HW_GPU_API_DIRECT3D_V11_0             |
+| HW_GPU_API_DIRECT3D_V11_1             |
+| HW_GPU_API_DIRECT3D_V11_2             |
+| HW_GPU_API_DIRECT3D_V11_3             |
+| HW_GPU_API_DIRECT3D_V12_0             |
+| HW_GPU_API_DIRECT3D_V6_0              |
+| HW_GPU_API_DIRECT3D_V7_0              |
+| HW_GPU_API_DIRECT3D_V8_0              |
+| HW_GPU_API_DIRECT3D_V8_1              |
+| HW_GPU_API_DIRECT3D_V9_0              |
+| HW_GPU_API_DIRECT3D_V9_0B             |
+| HW_GPU_API_DIRECT3D_V9_0C             |
+| HW_GPU_API_DIRECT3D_V9_0L             |
+| HW_GPU_API_DIRECTX_V10                |
+| HW_GPU_API_DIRECTX_V11                |
+| HW_GPU_API_DIRECTX_V12                |
+| HW_GPU_API_DXVA                       |
+| HW_GPU_API_OPENCL_V1_0                |
+| HW_GPU_API_OPENCL_V1_1                |
+| HW_GPU_API_OPENCL_V1_2                |
+| HW_GPU_API_OPENCL_V2_0                |
+| HW_GPU_API_OPENCL_V2_1                |
+| HW_GPU_API_OPENCL_V2_2                |
+| HW_GPU_API_OPENGL_V1_1                |
+| HW_GPU_API_OPENGL_V1_2                |
+| HW_GPU_API_OPENGL_V1_3                |
+| HW_GPU_API_OPENGL_V1_4                |
+| HW_GPU_API_OPENGL_V1_5                |
+| HW_GPU_API_OPENGL_V2_0                |
+| HW_GPU_API_OPENGL_V2_1                |
+| HW_GPU_API_OPENGL_V3_0                |
+| HW_GPU_API_OPENGL_V3_1                |
+| HW_GPU_API_OPENGL_V3_2                |
+| HW_GPU_API_OPENGL_V3_3                |
+| HW_GPU_API_OPENGL_V4_0                |
+| HW_GPU_API_OPENGL_V4_1                |
+| HW_GPU_API_OPENGL_V4_2                |
+| HW_GPU_API_OPENGL_V4_3                |
+| HW_GPU_API_OPENGL_V4_4                |
+| HW_GPU_API_OPENGL_V4_5                |
+| HW_GPU_API_VULKAN                     |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V1_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V1_1   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V1_2   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V1_3   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V2_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V2_1   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V3_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V3_2   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V3_5   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V3_7   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V5_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V5_2   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V5_3   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V6_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V6_1   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V6_2   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V7_0   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V7_1   |
+| HW_GPU_CUDA_COMPUTE_CAPABILITY_V7_2   |
+| HW_GPU_CUDA_SDK_V10_0                 |
+| HW_GPU_CUDA_SDK_V6_5                  |
+| HW_GPU_CUDA_SDK_V7_5                  |
+| HW_GPU_CUDA_SDK_V8_0                  |
+| HW_GPU_CUDA_SDK_V9_0                  |
+| HW_GPU_CUDA_SDK_V9_1                  |
+| HW_GPU_CUDA_SDK_V9_2                  |
+| HW_GPU_MAX_DISPLAY_HEADS_1            |
+| HW_GPU_MAX_DISPLAY_HEADS_2            |
+| HW_GPU_MAX_DISPLAY_HEADS_4            |
+| HW_GPU_MAX_DISPLAY_HEADS_6            |
+| HW_GPU_MAX_DISPLAY_HEADS_8            |
+| HW_GPU_RESOLUTION_W1024H600           |
+| HW_GPU_RESOLUTION_W1024H768           |
+| HW_GPU_RESOLUTION_W1152H864           |
+| HW_GPU_RESOLUTION_W1280H1024          |
+| HW_GPU_RESOLUTION_W1280H720           |
+| HW_GPU_RESOLUTION_W1280H768           |
+| HW_GPU_RESOLUTION_W1280H800           |
+| HW_GPU_RESOLUTION_W1360H768           |
+| HW_GPU_RESOLUTION_W1366H768           |
+| HW_GPU_RESOLUTION_W1440H900           |
+| HW_GPU_RESOLUTION_W1600H1200          |
+| HW_GPU_RESOLUTION_W1600H900           |
+| HW_GPU_RESOLUTION_W1680H1050          |
+| HW_GPU_RESOLUTION_W1920H1080          |
+| HW_GPU_RESOLUTION_W1920H1200          |
+| HW_GPU_RESOLUTION_W2560H1440          |
+| HW_GPU_RESOLUTION_W2560H1600          |
+| HW_GPU_RESOLUTION_W320H240            |
+| HW_GPU_RESOLUTION_W3840H2160          |
+| HW_GPU_RESOLUTION_W640H480            |
+| HW_GPU_RESOLUTION_W7680H4320          |
+| HW_GPU_RESOLUTION_W800H600            |
+| HW_NIC_ACCEL_DEFLATE                  |
+| HW_NIC_ACCEL_DIFFIEH                  |
+| HW_NIC_ACCEL_ECC                      |
+| HW_NIC_ACCEL_IPSEC                    |
+| HW_NIC_ACCEL_LZS                      |
+| HW_NIC_ACCEL_RSA                      |
+| HW_NIC_ACCEL_SSL                      |
+| HW_NIC_ACCEL_TLS                      |
+| HW_NIC_DCB_ETS                        |
+| HW_NIC_DCB_PFC                        |
+| HW_NIC_DCB_QCN                        |
+| HW_NIC_MULTIQUEUE                     |
+| HW_NIC_OFFLOAD_FDF                    |
+| HW_NIC_OFFLOAD_GENEVE                 |
+| HW_NIC_OFFLOAD_GRE                    |
+| HW_NIC_OFFLOAD_GRO                    |
+| HW_NIC_OFFLOAD_GSO                    |
+| HW_NIC_OFFLOAD_L2CRC                  |
+| HW_NIC_OFFLOAD_LRO                    |
+| HW_NIC_OFFLOAD_LSO                    |
+| HW_NIC_OFFLOAD_QINQ                   |
+| HW_NIC_OFFLOAD_RDMA                   |
+| HW_NIC_OFFLOAD_RX                     |
+| HW_NIC_OFFLOAD_RXHASH                 |
+| HW_NIC_OFFLOAD_RXVLAN                 |
+| HW_NIC_OFFLOAD_SCS                    |
+| HW_NIC_OFFLOAD_SG                     |
+| HW_NIC_OFFLOAD_SWITCHDEV              |
+| HW_NIC_OFFLOAD_TCS                    |
+| HW_NIC_OFFLOAD_TSO                    |
+| HW_NIC_OFFLOAD_TX                     |
+| HW_NIC_OFFLOAD_TXUDP                  |
+| HW_NIC_OFFLOAD_TXVLAN                 |
+| HW_NIC_OFFLOAD_UCS                    |
+| HW_NIC_OFFLOAD_UFO                    |
+| HW_NIC_OFFLOAD_VXLAN                  |
+| HW_NIC_PROGRAMMABLE_PIPELINE          |
+| HW_NIC_SRIOV                          |
+| HW_NIC_SRIOV_MULTIQUEUE               |
+| HW_NIC_SRIOV_QOS_RX                   |
+| HW_NIC_SRIOV_QOS_TX                   |
+| HW_NIC_SRIOV_TRUSTED                  |
+| HW_NIC_VMDQ                           |
+| HW_NUMA_ROOT                          |
+| MISC_SHARES_VIA_AGGREGATE             |
+| STORAGE_DISK_HDD                      |
+| STORAGE_DISK_SSD                      |
++---------------------------------------+

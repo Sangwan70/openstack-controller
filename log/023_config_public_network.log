@@ -1,0 +1,8 @@
+Sourcing the admin credentials.
+Waiting for neutron to come up.
+Waiting for neutron agent neutron-l3-agent.
+linuxbridge-agent and dhcp-agent must be up before we can add interfaces.
+Waiting for neutron agent neutron-linuxbridge-agent.
+Waiting for neutron agent neutron-dhcp-agent.
+Creating the public network.
+Error while executing command: ConflictException: 409, Unable to create the flat network. Physical network provider is in use.

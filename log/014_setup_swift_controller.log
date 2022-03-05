@@ -1,0 +1,179 @@
+Setting up database for swift.
+Waiting for database server to come up.
+mysql cmd: CREATE DATABASE swift.
+mysql cmd: GRANT ALL ON swift.* TO 'swift'@'%' IDENTIFIED BY 'swiftDBPass';.
+mysql cmd: GRANT ALL ON swift.* TO 'swift'@'localhost' IDENTIFIED BY 'swiftDBPass';.
+Waiting for keystone to come up.
+Creating swift user.
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | 7c66025d9aeb4a6e8855b8f1c89f7167 |
+| name                | swift                            |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+Linking swift user, service tenant and admin role.
+Registering swift with keystone so that other services can locate it.
++-------------+------------------------------------+
+| Field       | Value                              |
++-------------+------------------------------------+
+| description | SkillPedia OpenStack Block Storage |
+| enabled     | True                               |
+| id          | 397ff3827dff4f3d95500c6374ffd339   |
+| name        | swift                              |
+| type        | object-store                       |
++-------------+------------------------------------+
++--------------+-----------------------------------------------+
+| Field        | Value                                         |
++--------------+-----------------------------------------------+
+| enabled      | True                                          |
+| id           | 7d94dffd598e41938da0cc918e796429              |
+| interface    | public                                        |
+| region       | RegionOne                                     |
+| region_id    | RegionOne                                     |
+| service_id   | 397ff3827dff4f3d95500c6374ffd339              |
+| service_name | swift                                         |
+| service_type | object-store                                  |
+| url          | http://controller:8080/v1/AUTH_%(project_id)s |
++--------------+-----------------------------------------------+
++--------------+-----------------------------------------------+
+| Field        | Value                                         |
++--------------+-----------------------------------------------+
+| enabled      | True                                          |
+| id           | 9d62a2befbf848c98e96c35122f11fdf              |
+| interface    | internal                                      |
+| region       | RegionOne                                     |
+| region_id    | RegionOne                                     |
+| service_id   | 397ff3827dff4f3d95500c6374ffd339              |
+| service_name | swift                                         |
+| service_type | object-store                                  |
+| url          | http://controller:8080/v1/AUTH_%(project_id)s |
++--------------+-----------------------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | f4ea06156cd54dcbbde5c28d63974e97 |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 397ff3827dff4f3d95500c6374ffd339 |
+| service_name | swift                            |
+| service_type | object-store                     |
+| url          | http://controller:8080/v1        |
++--------------+----------------------------------+
+Installing swift.
+Last metadata expiration check: 5:14:10 ago on Sun 05 Sep 2021 01:29:35 AM EDT.
+Package python3-swiftclient-3.10.1-2.el8.noarch is already installed.
+Package python3-keystoneclient-1:4.1.1-2.el8.noarch is already installed.
+Package python3-keystonemiddleware-9.1.0-2.el8.noarch is already installed.
+Dependencies resolved.
+================================================================================
+ Package                       Arch    Version        Repository           Size
+================================================================================
+Installing:
+ openstack-swift-proxy         noarch  2.26.0-2.el8   openstack-victoria   37 k
+ python3-swift                 noarch  2.26.0-2.el8   openstack-victoria  1.5 M
+Installing dependencies:
+ liberasurecode                x86_64  1.6.0-4.el8    openstack-victoria   59 k
+ python3-ceilometermiddleware  noarch  2.1.0-2.el8    openstack-victoria   35 k
+ python3-pyeclib               x86_64  1.6.0-2.el8    openstack-victoria   54 k
+
+Transaction Summary
+================================================================================
+Install  5 Packages
+
+Total download size: 1.7 M
+Installed size: 6.4 M
+Downloading Packages:
+(1/5): openstack-swift-proxy-2.26.0-2.el8.noarc 130 kB/s |  37 kB     00:00    
+(2/5): python3-ceilometermiddleware-2.1.0-2.el8 115 kB/s |  35 kB     00:00    
+(3/5): python3-pyeclib-1.6.0-2.el8.x86_64.rpm   387 kB/s |  54 kB     00:00    
+(4/5): liberasurecode-1.6.0-4.el8.x86_64.rpm     46 kB/s |  59 kB     00:01    
+(5/5): python3-swift-2.26.0-2.el8.noarch.rpm    1.2 MB/s | 1.5 MB     00:01    
+--------------------------------------------------------------------------------
+Total                                           681 kB/s | 1.7 MB     00:02     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : python3-ceilometermiddleware-2.1.0-2.el8.noarch        1/5 
+  Installing       : liberasurecode-1.6.0-4.el8.x86_64                      2/5 
+  Running scriptlet: liberasurecode-1.6.0-4.el8.x86_64                      2/5 
+  Installing       : python3-pyeclib-1.6.0-2.el8.x86_64                     3/5 
+  Running scriptlet: python3-swift-2.26.0-2.el8.noarch                      4/5 
+  Installing       : python3-swift-2.26.0-2.el8.noarch                      4/5 
+  Running scriptlet: python3-swift-2.26.0-2.el8.noarch                      4/5 
+  Installing       : openstack-swift-proxy-2.26.0-2.el8.noarch              5/5 
+  Running scriptlet: openstack-swift-proxy-2.26.0-2.el8.noarch              5/5 
+[/usr/lib/tmpfiles.d/openstack-swift.conf:2] Line references path below legacy directory /var/run/, updating /var/run/swift → /run/swift; please update the tmpfiles.d/ drop-in file accordingly.
+[/usr/lib/tmpfiles.d/openstack-swift.conf:3] Line references path below legacy directory /var/run/, updating /var/run/swift/account-server → /run/swift/account-server; please update the tmpfiles.d/ drop-in file accordingly.
+[/usr/lib/tmpfiles.d/openstack-swift.conf:4] Line references path below legacy directory /var/run/, updating /var/run/swift/container-server → /run/swift/container-server; please update the tmpfiles.d/ drop-in file accordingly.
+[/usr/lib/tmpfiles.d/openstack-swift.conf:5] Line references path below legacy directory /var/run/, updating /var/run/swift/object-server → /run/swift/object-server; please update the tmpfiles.d/ drop-in file accordingly.
+[/usr/lib/tmpfiles.d/openstack-swift.conf:6] Line references path below legacy directory /var/run/, updating /var/run/swift/proxy-server → /run/swift/proxy-server; please update the tmpfiles.d/ drop-in file accordingly.
+[/usr/lib/tmpfiles.d/rabbitmq-server.conf:1] Line references path below legacy directory /var/run/, updating /var/run/rabbitmq → /run/rabbitmq; please update the tmpfiles.d/ drop-in file accordingly.
+
+  Verifying        : liberasurecode-1.6.0-4.el8.x86_64                      1/5 
+  Verifying        : openstack-swift-proxy-2.26.0-2.el8.noarch              2/5 
+  Verifying        : python3-ceilometermiddleware-2.1.0-2.el8.noarch        3/5 
+  Verifying        : python3-pyeclib-1.6.0-2.el8.x86_64                     4/5 
+  Verifying        : python3-swift-2.26.0-2.el8.noarch                      5/5 
+Installed products updated.
+
+Installed:
+  liberasurecode-1.6.0-4.el8.x86_64                                             
+  openstack-swift-proxy-2.26.0-2.el8.noarch                                     
+  python3-ceilometermiddleware-2.1.0-2.el8.noarch                               
+  python3-pyeclib-1.6.0-2.el8.x86_64                                            
+  python3-swift-2.26.0-2.el8.noarch                                             
+
+Complete!
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 55517    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 55517  100 55517    0     0  23122      0  0:00:02  0:00:02 --:--:-- 23122
+Configuring proxy-server.conf.
+'/etc/swift/proxy-server.conf' -> '/tmp/114_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/114_etc_swift_proxy-server.conf.iniset DEFAULT bind_port 8080
+'/etc/swift/proxy-server.conf' -> '/tmp/115_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/115_etc_swift_proxy-server.conf.iniset DEFAULT user swift
+'/etc/swift/proxy-server.conf' -> '/tmp/116_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/116_etc_swift_proxy-server.conf.iniset DEFAULT swift_dir /etc/swift
+'/etc/swift/proxy-server.conf' -> '/tmp/117_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/117_etc_swift_proxy-server.conf.iniset app:proxy-server use egg:swift#proxy
+'/etc/swift/proxy-server.conf' -> '/tmp/118_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/118_etc_swift_proxy-server.conf.iniset app:proxy-server account_autocreate True
+'/etc/swift/proxy-server.conf' -> '/tmp/119_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/119_etc_swift_proxy-server.conf.iniset filter:keystoneauth use egg:swift#keystoneauth
+'/etc/swift/proxy-server.conf' -> '/tmp/120_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/120_etc_swift_proxy-server.conf.iniset filter:keystoneauth operator_roles admin,member
+'/etc/swift/proxy-server.conf' -> '/tmp/121_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/121_etc_swift_proxy-server.conf.iniset filter:authtoken paste.filter_factory keystonemiddleware.auth_token:filter_factory
+'/etc/swift/proxy-server.conf' -> '/tmp/122_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/122_etc_swift_proxy-server.conf.iniset filter:authtoken www_authenticate_uri http://controller:5000
+'/etc/swift/proxy-server.conf' -> '/tmp/123_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/123_etc_swift_proxy-server.conf.iniset filter:authtoken auth_url http://controller:5000
+'/etc/swift/proxy-server.conf' -> '/tmp/124_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/124_etc_swift_proxy-server.conf.iniset filter:authtoken memcached_servers controller:11211
+'/etc/swift/proxy-server.conf' -> '/tmp/125_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/125_etc_swift_proxy-server.conf.iniset filter:authtoken auth_type password
+'/etc/swift/proxy-server.conf' -> '/tmp/126_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/126_etc_swift_proxy-server.conf.iniset filter:authtoken project_domain_id default
+'/etc/swift/proxy-server.conf' -> '/tmp/127_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/127_etc_swift_proxy-server.conf.iniset filter:authtoken user_domain_id default
+'/etc/swift/proxy-server.conf' -> '/tmp/128_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/128_etc_swift_proxy-server.conf.iniset filter:authtoken project_name service
+'/etc/swift/proxy-server.conf' -> '/tmp/129_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/129_etc_swift_proxy-server.conf.iniset filter:authtoken username swift
+'/etc/swift/proxy-server.conf' -> '/tmp/130_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/130_etc_swift_proxy-server.conf.iniset filter:authtoken password swiftPass
+'/etc/swift/proxy-server.conf' -> '/tmp/131_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/131_etc_swift_proxy-server.conf.iniset filter:authtoken delay_auth_decision True
+'/etc/swift/proxy-server.conf' -> '/tmp/132_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/132_etc_swift_proxy-server.conf.iniset filter:cache use egg:swift#memcache
+'/etc/swift/proxy-server.conf' -> '/tmp/133_etc_swift_proxy-server.conf.iniset'
+iniset /tmp/133_etc_swift_proxy-server.conf.iniset filter:cache memcache_servers controller:11211

@@ -1,0 +1,235 @@
+SUM --- BEGIN
+neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead.
+Running on host: controller
+Checking network connection to compute node.
+PING compute (10.0.0.31) 56(84) bytes of data.
+64 bytes from compute (10.0.0.31): icmp_seq=1 ttl=64 time=0.464 ms
+
+--- compute ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.464/0.464/0.464/0.000 ms
+
+Checking services on controller node.
+Node controller, service neutron-l3-agent: up
+Node controller, service neutron-dhcp-agent: up
+Node controller, service neutron-metadata-agent: up
+
+Checking services on compute node.
+Node compute, service openstack-nova-compute: up
+
+Checking for nova services in openstack compute service list.
+  nova-scheduler
+  nova-conductor
+  openstack-nova-compute  Waiting for openstack-nova-compute service in state 'up'.
+  Service is up, waiting (may take a few minutes).
+
+
+SUM wait for nova services: 41
+All services are ready:
++----+----------------+------------+----------+---------+-------+----------------------------+
+| ID | Binary         | Host       | Zone     | Status  | State | Updated At                 |
++----+----------------+------------+----------+---------+-------+----------------------------+
+|  4 | nova-scheduler | controller | internal | enabled | up    | 2021-09-05T13:35:19.000000 |
+|  6 | nova-conductor | controller | internal | enabled | up    | 2021-09-05T13:35:18.000000 |
+|  9 | nova-compute   | compute    | nova     | enabled | up    | 2021-09-05T13:35:18.000000 |
++----+----------------+------------+----------+---------+-------+----------------------------+
+
+Waiting for agents in openstack network agent list.
+| 08122437-b987-4364-a114-24ee95952b0f | Linux bridge agent | compute    | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 20867535-553b-4621-b8da-00a5ad0852ba | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 54b39e30-2f76-4801-a894-3dce04f10df7 | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
+| 904cd737-25e5-40da-8e5c-a160e93a7227 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| ea70bf1a-cdbc-42bb-ba62-c4ba793aedec | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
+
+All agents are ready.
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| 08122437-b987-4364-a114-24ee95952b0f | Linux bridge agent | compute    | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 20867535-553b-4621-b8da-00a5ad0852ba | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 54b39e30-2f76-4801-a894-3dce04f10df7 | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
+| 904cd737-25e5-40da-8e5c-a160e93a7227 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| ea70bf1a-cdbc-42bb-ba62-c4ba793aedec | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+
+SUM wait for neutron agents: 7
+
+Check if m1.nano flavor is existing or else, create the flavor.
+Current flavors:
++----+---------+-----+------+-----------+-------+-----------+
+| ID | Name    | RAM | Disk | Ephemeral | VCPUs | Is Public |
++----+---------+-----+------+-----------+-------+-----------+
+| 0  | m1.nano |  64 |    1 |         0 |     1 | True      |
++----+---------+-----+------+-----------+-------+-----------+
+| 0  | m1.nano |  64 |    1 |         0 |     1 | True      |
+Proceeding, m1.nano flavor exists.
+
+Checking if 'mykey' is already in our OpenStack environment: yes.
+Checking if the 'mykey' key pair matches our ssh key: yes.
++-------------+-------------------------------------------------+
+| Field       | Value                                           |
++-------------+-------------------------------------------------+
+| created_at  | 2021-09-05T13:15:25.000000                      |
+| deleted     | False                                           |
+| deleted_at  | None                                            |
+| fingerprint | c4:e6:43:f7:c3:32:de:d7:f4:43:0b:66:75:06:eb:8d |
+| id          | 1                                               |
+| name        | mykey                                           |
+| updated_at  | None                                            |
+| user_id     | edf4d3a415e843848ebfd82407f83c12                |
++-------------+-------------------------------------------------+
+Verifying addition of the public key.
++-------+-------------------------------------------------+
+| Name  | Fingerprint                                     |
++-------+-------------------------------------------------+
+| mykey | c4:e6:43:f7:c3:32:de:d7:f4:43:0b:66:75:06:eb:8d |
++-------+-------------------------------------------------+
+
+Permitting ICMP (ping) to our instances.
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 9e610977-427c-4860-8da3-c3064ed2f979.
+Rule was already there.
+
+Permitting secure shell (SSH) access to our instances.
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 9280c349-5db8-4b28-9cd8-095147f724e0.
+Rule was already there.
+
+Verifying security group rules.
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| ID                                   | Name    | Description            | Project                          | Tags |
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| 1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23 | default | Default security group | 1113bab9f43644828f8a11a2b4e932bf | []   |
++--------------------------------------+---------+------------------------+----------------------------------+------+
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field           | Value                                                                                                                                                                                                                                          |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| created_at      | 2021-09-05T13:15:28Z                                                                                                                                                                                                                           |
+| description     | Default security group                                                                                                                                                                                                                         |
+| id              | 1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23                                                                                                                                                                                                           |
+| name            | default                                                                                                                                                                                                                                        |
+| project_id      | 1113bab9f43644828f8a11a2b4e932bf                                                                                                                                                                                                               |
+| revision_number | 3                                                                                                                                                                                                                                              |
+| rules           | created_at='2021-09-05T13:15:29Z', direction='egress', ethertype='IPv4', id='332ba434-f3fe-48ca-a0e5-3b74398b63f0', updated_at='2021-09-05T13:15:29Z'                                                                                          |
+|                 | created_at='2021-09-05T13:15:28Z', direction='ingress', ethertype='IPv4', id='86e5645e-a89b-4a95-b619-2a5a1835d1b9', remote_group_id='1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23', updated_at='2021-09-05T13:15:28Z'                                 |
+|                 | created_at='2021-09-05T13:15:37Z', direction='ingress', ethertype='IPv4', id='9280c349-5db8-4b28-9cd8-095147f724e0', port_range_max='22', port_range_min='22', protocol='tcp', remote_ip_prefix='0.0.0.0/0', updated_at='2021-09-05T13:15:37Z' |
+|                 | created_at='2021-09-05T13:15:29Z', direction='ingress', ethertype='IPv4', id='9e610977-427c-4860-8da3-c3064ed2f979', protocol='icmp', remote_ip_prefix='0.0.0.0/0', updated_at='2021-09-05T13:15:29Z'                                          |
+|                 | created_at='2021-09-05T13:15:29Z', direction='ingress', ethertype='IPv6', id='abb88efc-cc0d-4c56-bd24-348333bbee00', remote_group_id='1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23', updated_at='2021-09-05T13:15:29Z'                                 |
+|                 | created_at='2021-09-05T13:15:29Z', direction='egress', ethertype='IPv6', id='da23e1bb-c58c-4e3c-9d44-3a6dc7394713', updated_at='2021-09-05T13:15:29Z'                                                                                          |
+| stateful        | True                                                                                                                                                                                                                                           |
+| tags            | []                                                                                                                                                                                                                                             |
+| updated_at      | 2021-09-05T13:15:37Z                                                                                                                                                                                                                           |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Listing available flavors.
++----+---------+-----+------+-----------+-------+-----------+
+| ID | Name    | RAM | Disk | Ephemeral | VCPUs | Is Public |
++----+---------+-----+------+-----------+-------+-----------+
+| 0  | m1.nano |  64 |    1 |         0 |     1 | True      |
++----+---------+-----+------+-----------+-------+-----------+
+Listing available images.
++--------------------------------------+--------+--------+
+| ID                                   | Name   | Status |
++--------------------------------------+--------+--------+
+| 63a38f94-4bb8-4934-a69f-a7caf84af60d | cirros | active |
++--------------------------------------+--------+--------+
+Waiting for neutron to come up.
+Listing available networks.
++--------------------------------------+-------------+--------------------------------------+
+| ID                                   | Name        | Subnets                              |
++--------------------------------------+-------------+--------------------------------------+
+| abc91e0e-710d-4108-9762-39660c5c5bf1 | selfservice | 52fb8a99-906e-489e-b5cd-7fd06d00cd50 |
+| fdc3402a-8a37-4419-abdd-7250c46c6dc2 | provider    | b5069bd9-5081-4988-9a24-0572d1f6b296 |
++--------------------------------------+-------------+--------------------------------------+
+ID for demo-net tenant network: abc91e0e-710d-4108-9762-39660c5c5bf1
+Listing available security groups.
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| ID                                   | Name    | Description            | Project                          | Tags |
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| 1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23 | default | Default security group | 1113bab9f43644828f8a11a2b4e932bf | []   |
++--------------------------------------+---------+------------------------+----------------------------------+------+
+Settings for selfservice:
++----------------------+--------------------------------------+
+| Field                | Value                                |
++----------------------+--------------------------------------+
+| allocation_pools     | 172.16.1.2-172.16.1.254              |
+| cidr                 | 172.16.1.0/24                        |
+| created_at           | 2021-09-05T13:31:36Z                 |
+| description          |                                      |
+| dns_nameservers      | 8.8.8.8                              |
+| dns_publish_fixed_ip | None                                 |
+| enable_dhcp          | True                                 |
+| gateway_ip           | 172.16.1.1                           |
+| host_routes          |                                      |
+| id                   | 52fb8a99-906e-489e-b5cd-7fd06d00cd50 |
+| ip_version           | 4                                    |
+| ipv6_address_mode    | None                                 |
+| ipv6_ra_mode         | None                                 |
+| name                 | selfservice                          |
+| network_id           | abc91e0e-710d-4108-9762-39660c5c5bf1 |
+| prefix_length        | None                                 |
+| project_id           | 1113bab9f43644828f8a11a2b4e932bf     |
+| revision_number      | 0                                    |
+| segment_id           | None                                 |
+| service_types        |                                      |
+| subnetpool_id        | None                                 |
+| tags                 |                                      |
+| updated_at           | 2021-09-05T13:31:36Z                 |
++----------------------+--------------------------------------+
+
+Checking for DNS name servers in subnet selfservice (passed to booting instance VMs).
+DNS name server already set (['8.8.8.8']).
+Settings for selfservice:
++----------------------+--------------------------------------+
+| Field                | Value                                |
++----------------------+--------------------------------------+
+| allocation_pools     | 172.16.1.2-172.16.1.254              |
+| cidr                 | 172.16.1.0/24                        |
+| created_at           | 2021-09-05T13:31:36Z                 |
+| description          |                                      |
+| dns_nameservers      | 8.8.8.8                              |
+| dns_publish_fixed_ip | None                                 |
+| enable_dhcp          | True                                 |
+| gateway_ip           | 172.16.1.1                           |
+| host_routes          |                                      |
+| id                   | 52fb8a99-906e-489e-b5cd-7fd06d00cd50 |
+| ip_version           | 4                                    |
+| ipv6_address_mode    | None                                 |
+| ipv6_ra_mode         | None                                 |
+| name                 | selfservice                          |
+| network_id           | abc91e0e-710d-4108-9762-39660c5c5bf1 |
+| prefix_length        | None                                 |
+| project_id           | 1113bab9f43644828f8a11a2b4e932bf     |
+| revision_number      | 0                                    |
+| segment_id           | None                                 |
+| service_types        |                                      |
+| subnetpool_id        | None                                 |
+| tags                 |                                      |
+| updated_at           | 2021-09-05T13:31:36Z                 |
++----------------------+--------------------------------------+
+
+
+Waiting for removed instances to disappear (may take > 1 min).
+Verifying that no other instance VMs are left.
+Boot log: /home/stack/log/test-instance.boot
+###################################################################
+Launching an instance VM (0).
+openstack console log show returned:
+Instance 773008ed-948e-48d4-9a7a-a8105a16f895 is not ready (HTTP 409) (Request-ID: req-5fcd2979-dfc7-488b-8c35-ffd831da48e9)
+
+Checking log files for cause of failure.
+comm: file 2 is not in sorted order
+2021-09-05 09:36:29.488 6836 INFO nova.api.openstack.wsgi [req-fbcab59a-c2f3-455d-b710-dd0a3efbe3f8 edf4d3a415e843848ebfd82407f83c12 1113bab9f43644828f8a11a2b4e932bf - default default] HTTP exception thrown: Flavor m1.nano could not be found.
+2021-09-05 09:36:36.827 6836 INFO nova.api.openstack.wsgi [req-ce254293-b43c-4511-9551-f287e284133e edf4d3a415e843848ebfd82407f83c12 1113bab9f43644828f8a11a2b4e932bf - default default] HTTP exception thrown: Instance private-instance could not be found.
+2021-09-05 09:36:39.618 6836 INFO nova.api.openstack.wsgi [req-5fcd2979-dfc7-488b-8c35-ffd831da48e9 edf4d3a415e843848ebfd82407f83c12 1113bab9f43644828f8a11a2b4e932bf - default default] HTTP exception thrown: Instance 773008ed-948e-48d4-9a7a-a8105a16f895 is not ready
+Waiting for HTTP status 409 to cure itself......failed
+Instance build failed.
+Deleting failed instance VM.
+Checking openstack-nova-compute on the compute node.
+  Waiting for openstack-nova-compute service in state 'up'.
+  Service is up, waiting (may take a few minutes).
+Requesting new instance VMs until it works..
+Waiting for instance to get out of BUILD status.
+Instance VM status: ACTIVE.
+SUM ERROR HTTP exceptions: 5-fail 
+Waiting for DHCP discover.
+Waiting for DHCP success........................No lease, failing
+SUM ABORT DHCP wait: fail (24)
+Aborting.

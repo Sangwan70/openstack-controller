@@ -1,0 +1,552 @@
+Setting up database for keystone.
+Waiting for database server to come up.
+mysql cmd: CREATE DATABASE keystone.
+mysql cmd: GRANT ALL ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'keystoneDBPass';.
+mysql cmd: GRANT ALL ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'keystoneDBPass';.
+Sanity check: local auth should work.
+Sanity check: remote auth should work.
+Installing keystone.
+Last metadata expiration check: 5:01:25 ago on Sun 05 Sep 2021 01:29:35 AM EDT.
+Dependencies resolved.
+=======================================================================================================
+ Package                        Arch    Version                               Repository           Size
+=======================================================================================================
+Installing:
+ httpd                          x86_64  2.4.37-39.module_el8.4.0+778+c970deab appstream           1.4 M
+ openstack-keystone             noarch  1:18.0.0-1.el8                        openstack-victoria   83 k
+ python3-heatclient             noarch  2.2.1-2.el8                           openstack-victoria  164 k
+ python3-mod_wsgi               x86_64  4.6.4-4.el8                           appstream           2.5 M
+Installing dependencies:
+ apr                            x86_64  1.6.3-11.el8                          appstream           125 k
+ apr-util                       x86_64  1.6.1-6.el8                           appstream           105 k
+ centos-logos-httpd             noarch  85.8-1.el8                            baseos               75 k
+ httpd-filesystem               noarch  2.4.37-39.module_el8.4.0+778+c970deab appstream            38 k
+ httpd-tools                    x86_64  2.4.37-39.module_el8.4.0+778+c970deab appstream           106 k
+ mod_http2                      x86_64  1.15.7-3.module_el8.4.0+778+c970deab  appstream           154 k
+ python-oslo-cache-lang         noarch  2.6.2-1.el8                           openstack-victoria   16 k
+ python-oslo-concurrency-lang   noarch  4.3.1-1.el8                           openstack-victoria   13 k
+ python-oslo-db-lang            noarch  8.4.1-1.el8                           openstack-victoria   13 k
+ python-oslo-middleware-lang    noarch  4.1.1-2.el8                           openstack-victoria   12 k
+ python-oslo-policy-lang        noarch  3.5.0-2.el8                           openstack-victoria   12 k
+ python-pycadf-common           noarch  3.1.1-2.el8                           openstack-victoria   14 k
+ python3-alembic                noarch  1.4.2-5.el8                           openstack-victoria  811 k
+ python3-amqp                   noarch  2.6.1-1.el8                           openstack-victoria   96 k
+ python3-aniso8601              noarch  8.0.0-1.el8                           openstack-victoria   79 k
+ python3-babel                  noarch  2.5.1-5.el8                           appstream           4.8 M
+ python3-bcrypt                 x86_64  3.1.7-3.el8                           ceph-nautilus        44 k
+ python3-cachetools             noarch  4.1.1-2.el8                           openstack-victoria   34 k
+ python3-click                  noarch  6.7-8.el8                             appstream           131 k
+ python3-defusedxml             noarch  0.6.0-4.el8                           openstack-victoria   52 k
+ python3-dns                    noarch  1.15.0-10.el8                         baseos              253 k
+ python3-editor                 noarch  1.0.4-4.el8                           openstack-victoria   19 k
+ python3-eventlet               noarch  0.25.2-3.1.el8                        openstack-victoria  385 k
+ python3-fasteners              noarch  0.14.1-20.el8                         openstack-victoria   44 k
+ python3-flask                  noarch  1:1.1.1-1.el8                         openstack-victoria  164 k
+ python3-flask-restful          noarch  0.3.8-4.el8                           openstack-victoria  123 k
+ python3-future                 noarch  0.18.2-3.el8                          openstack-victoria  789 k
+ python3-futurist               noarch  2.3.0-2.el8                           openstack-victoria   63 k
+ python3-greenlet               x86_64  0.4.13-4.el8                          appstream            31 k
+ python3-itsdangerous           noarch  0.24-14.el8                           appstream            31 k
+ python3-jinja2                 noarch  2.10.1-2.el8_0                        appstream           538 k
+ python3-jsonschema             noarch  3.2.0-5.el8                           openstack-victoria  112 k
+ python3-jwt                    noarch  1.6.1-2.el8                           baseos               43 k
+ python3-keystone               noarch  1:18.0.0-1.el8                        openstack-victoria  1.1 M
+ python3-keystonemiddleware     noarch  9.1.0-2.el8                           openstack-victoria   92 k
+ python3-kombu                  noarch  1:4.6.11-2.el8                        openstack-victoria  341 k
+ python3-ldap                   x86_64  3.3.1-1.el8                           appstream           230 k
+ python3-ldappool               noarch  2.4.0-5.el8                           openstack-victoria   30 k
+ python3-migrate                noarch  0.13.0-1.el8                          openstack-victoria  238 k
+ python3-monotonic              noarch  1.5-5.el8                             openstack-victoria   19 k
+ python3-oauthlib               noarch  2.1.0-1.el8                           baseos              155 k
+ python3-oslo-cache             noarch  2.6.2-1.el8                           openstack-victoria   52 k
+ python3-oslo-concurrency       noarch  4.3.1-1.el8                           openstack-victoria   41 k
+ python3-oslo-db                noarch  8.4.1-1.el8                           openstack-victoria  147 k
+ python3-oslo-messaging         noarch  12.5.2-1.el8                          openstack-victoria  226 k
+ python3-oslo-middleware        noarch  4.1.1-2.el8                           openstack-victoria   53 k
+ python3-oslo-policy            noarch  3.5.0-2.el8                           openstack-victoria   74 k
+ python3-oslo-service           noarch  2.4.0-2.el8                           openstack-victoria   70 k
+ python3-oslo-upgradecheck      noarch  1.1.1-2.el8                           openstack-victoria   23 k
+ python3-osprofiler             noarch  3.4.0-2.el8                           openstack-victoria  132 k
+ python3-passlib                noarch  1.7.2-3.el8                           openstack-victoria  760 k
+ python3-paste                  noarch  3.2.4-1.el8                           openstack-victoria  811 k
+ python3-paste-deploy           noarch  2.1.0-3.el8                           openstack-victoria   40 k
+ python3-pyasn1                 noarch  0.4.6-3.el8                           ceph-nautilus       140 k
+ python3-pyasn1-modules         noarch  0.4.6-3.el8                           ceph-nautilus       151 k
+ python3-pycadf                 noarch  3.1.1-2.el8                           openstack-victoria   51 k
+ python3-pyngus                 noarch  2.3.0-4.el8                           openstack-victoria   54 k
+ python3-pyrsistent             x86_64  0.16.0-3.el8                          openstack-victoria  108 k
+ python3-pysaml2                noarch  6.1.0-1.el8                           openstack-victoria  541 k
+ python3-qpid-proton            x86_64  0.30.0-1.el8                          openstack-victoria  396 k
+ python3-repoze-lru             noarch  0.7-6.el8                             ceph-nautilus        33 k
+ python3-routes                 noarch  2.4.1-12.el8                          ceph-nautilus       196 k
+ python3-scrypt                 x86_64  0.8.0-11.el8                          openstack-victoria   34 k
+ python3-sqlalchemy             x86_64  1.3.2-2.module_el8.4.0+666+456f5f48   appstream           1.9 M
+ python3-sqlparse               noarch  0.3.1-3.el8                           openstack-victoria   88 k
+ python3-statsd                 noarch  3.2.1-16.el8                          openstack-victoria   35 k
+ python3-swiftclient            noarch  3.10.1-2.el8                          openstack-victoria  175 k
+ python3-tempita                noarch  0.5.1-25.el8                          openstack-victoria   39 k
+ python3-vine                   noarch  1.3.0-4.el8                           openstack-victoria   34 k
+ python3-webob                  noarch  1.8.6-3.el8                           openstack-victoria  253 k
+ python3-werkzeug               noarch  1.0.1-3.el8                           openstack-victoria  448 k
+ python3-yappi                  x86_64  1.2.5-1.el8                           openstack-victoria   50 k
+ qpid-proton-c                  x86_64  0.30.0-1.el8                          openstack-victoria  199 k
+Installing weak dependencies:
+ apr-util-bdb                   x86_64  1.6.1-6.el8                           appstream            25 k
+ apr-util-openssl               x86_64  1.6.1-6.el8                           appstream            27 k
+
+Transaction Summary
+=======================================================================================================
+Install  79 Packages
+
+Total download size: 23 M
+Installed size: 94 M
+Downloading Packages:
+(1/79): apr-util-bdb-1.6.1-6.el8.x86_64.rpm     102 kB/s |  25 kB     00:00    
+(2/79): apr-util-1.6.1-6.el8.x86_64.rpm         378 kB/s | 105 kB     00:00    
+(3/79): apr-1.6.3-11.el8.x86_64.rpm             361 kB/s | 125 kB     00:00    
+(4/79): apr-util-openssl-1.6.1-6.el8.x86_64.rpm 178 kB/s |  27 kB     00:00    
+(5/79): httpd-filesystem-2.4.37-39.module_el8.4 447 kB/s |  38 kB     00:00    
+(6/79): httpd-tools-2.4.37-39.module_el8.4.0+77 759 kB/s | 106 kB     00:00    
+(7/79): mod_http2-1.15.7-3.module_el8.4.0+778+c 1.2 MB/s | 154 kB     00:00    
+(8/79): python3-click-6.7-8.el8.noarch.rpm      822 kB/s | 131 kB     00:00    
+(9/79): python3-greenlet-0.4.13-4.el8.x86_64.rp 244 kB/s |  31 kB     00:00    
+(10/79): python3-itsdangerous-0.24-14.el8.noarc 270 kB/s |  31 kB     00:00    
+(11/79): python3-jinja2-2.10.1-2.el8_0.noarch.r 1.5 MB/s | 538 kB     00:00    
+(12/79): httpd-2.4.37-39.module_el8.4.0+778+c97 1.2 MB/s | 1.4 MB     00:01    
+(13/79): python3-ldap-3.3.1-1.el8.x86_64.rpm    1.5 MB/s | 230 kB     00:00    
+(14/79): python3-sqlalchemy-1.3.2-2.module_el8. 2.4 MB/s | 1.9 MB     00:00    
+(15/79): centos-logos-httpd-85.8-1.el8.noarch.r 171 kB/s |  75 kB     00:00    
+(16/79): python3-mod_wsgi-4.6.4-4.el8.x86_64.rp 1.6 MB/s | 2.5 MB     00:01    
+(17/79): python3-dns-1.15.0-10.el8.noarch.rpm   792 kB/s | 253 kB     00:00    
+(18/79): python3-babel-2.5.1-5.el8.noarch.rpm   1.7 MB/s | 4.8 MB     00:02    
+(19/79): python3-jwt-1.6.1-2.el8.noarch.rpm     114 kB/s |  43 kB     00:00    
+[MIRROR] python3-bcrypt-3.1.7-3.el8.x86_64.rpm: Status code: 500 for http://mirrors.piconets.webwerks.in/centos-mirror/8.4.2105/storage/x86_64/ceph-nautilus/Packages/p/python3-bcrypt-3.1.7-3.el8.x86_64.rpm (IP: 43.240.66.200)
+(20/79): python3-oauthlib-2.1.0-1.el8.noarch.rp 249 kB/s | 155 kB     00:00    
+(21/79): python3-pyasn1-0.4.6-3.el8.noarch.rpm  510 kB/s | 140 kB     00:00    
+(22/79): python3-bcrypt-3.1.7-3.el8.x86_64.rpm  113 kB/s |  44 kB     00:00    
+(23/79): python3-pyasn1-modules-0.4.6-3.el8.noa 1.4 MB/s | 151 kB     00:00    
+(24/79): python3-repoze-lru-0.7-6.el8.noarch.rp 240 kB/s |  33 kB     00:00    
+(25/79): python3-routes-2.4.1-12.el8.noarch.rpm 883 kB/s | 196 kB     00:00    
+(26/79): python-oslo-cache-lang-2.6.2-1.el8.noa  74 kB/s |  16 kB     00:00    
+(27/79): python-oslo-db-lang-8.4.1-1.el8.noarch 132 kB/s |  13 kB     00:00    
+(28/79): openstack-keystone-18.0.0-1.el8.noarch 238 kB/s |  83 kB     00:00    
+(29/79): python-oslo-concurrency-lang-4.3.1-1.e  93 kB/s |  13 kB     00:00    
+(30/79): python-oslo-middleware-lang-4.1.1-2.el 104 kB/s |  12 kB     00:00    
+(31/79): python-oslo-policy-lang-3.5.0-2.el8.no 107 kB/s |  12 kB     00:00    
+(32/79): python-pycadf-common-3.1.1-2.el8.noarc 126 kB/s |  14 kB     00:00    
+(33/79): python3-aniso8601-8.0.0-1.el8.noarch.r 376 kB/s |  79 kB     00:00    
+(34/79): python3-amqp-2.6.1-1.el8.noarch.rpm    412 kB/s |  96 kB     00:00    
+(35/79): python3-defusedxml-0.6.0-4.el8.noarch. 411 kB/s |  52 kB     00:00    
+(36/79): python3-cachetools-4.1.1-2.el8.noarch. 226 kB/s |  34 kB     00:00    
+(37/79): python3-editor-1.0.4-4.el8.noarch.rpm  188 kB/s |  19 kB     00:00    
+(38/79): python3-fasteners-0.14.1-20.el8.noarch 467 kB/s |  44 kB     00:00    
+(39/79): python3-alembic-1.4.2-5.el8.noarch.rpm 1.4 MB/s | 811 kB     00:00    
+(40/79): python3-flask-restful-0.3.8-4.el8.noar 1.2 MB/s | 123 kB     00:00    
+(41/79): python3-flask-1.1.1-1.el8.noarch.rpm   741 kB/s | 164 kB     00:00    
+(42/79): python3-eventlet-0.25.2-3.1.el8.noarch 883 kB/s | 385 kB     00:00    
+(43/79): python3-futurist-2.3.0-2.el8.noarch.rp 692 kB/s |  63 kB     00:00    
+(44/79): python3-jsonschema-3.2.0-5.el8.noarch. 1.2 MB/s | 112 kB     00:00    
+(45/79): python3-heatclient-2.2.1-2.el8.noarch. 746 kB/s | 164 kB     00:00    
+(46/79): python3-keystonemiddleware-9.1.0-2.el8 504 kB/s |  92 kB     00:00    
+(47/79): python3-future-0.18.2-3.el8.noarch.rpm 992 kB/s | 789 kB     00:00    
+(48/79): python3-ldappool-2.4.0-5.el8.noarch.rp 325 kB/s |  30 kB     00:00    
+(49/79): python3-kombu-4.6.11-2.el8.noarch.rpm  935 kB/s | 341 kB     00:00    
+(50/79): python3-monotonic-1.5-5.el8.noarch.rpm 179 kB/s |  19 kB     00:00    
+(51/79): python3-keystone-18.0.0-1.el8.noarch.r 1.4 MB/s | 1.1 MB     00:00    
+(52/79): python3-oslo-cache-2.6.2-1.el8.noarch. 560 kB/s |  52 kB     00:00    
+(53/79): python3-migrate-0.13.0-1.el8.noarch.rp 1.0 MB/s | 238 kB     00:00    
+(54/79): python3-oslo-concurrency-4.3.1-1.el8.n 497 kB/s |  41 kB     00:00    
+(55/79): python3-oslo-middleware-4.1.1-2.el8.no 528 kB/s |  53 kB     00:00    
+(56/79): python3-oslo-messaging-12.5.2-1.el8.no 1.2 MB/s | 226 kB     00:00    
+(57/79): python3-oslo-policy-3.5.0-2.el8.noarch 888 kB/s |  74 kB     00:00    
+(58/79): python3-oslo-db-8.4.1-1.el8.noarch.rpm 610 kB/s | 147 kB     00:00    
+(59/79): python3-oslo-service-2.4.0-2.el8.noarc 638 kB/s |  70 kB     00:00    
+(60/79): python3-oslo-upgradecheck-1.1.1-2.el8. 128 kB/s |  23 kB     00:00    
+(61/79): python3-osprofiler-3.4.0-2.el8.noarch. 664 kB/s | 132 kB     00:00    
+(62/79): python3-paste-deploy-2.1.0-3.el8.noarc 450 kB/s |  40 kB     00:00    
+(63/79): python3-pycadf-3.1.1-2.el8.noarch.rpm  536 kB/s |  51 kB     00:00    
+(64/79): python3-pyngus-2.3.0-4.el8.noarch.rpm  614 kB/s |  54 kB     00:00    
+(65/79): python3-passlib-1.7.2-3.el8.noarch.rpm 1.6 MB/s | 760 kB     00:00    
+(66/79): python3-pyrsistent-0.16.0-3.el8.x86_64 603 kB/s | 108 kB     00:00    
+(67/79): python3-pysaml2-6.1.0-1.el8.noarch.rpm 1.8 MB/s | 541 kB     00:00    
+(68/79): python3-scrypt-0.8.0-11.el8.x86_64.rpm 413 kB/s |  34 kB     00:00    
+(69/79): python3-qpid-proton-0.30.0-1.el8.x86_6 1.1 MB/s | 396 kB     00:00    
+(70/79): python3-sqlparse-0.3.1-3.el8.noarch.rp 876 kB/s |  88 kB     00:00    
+(71/79): python3-paste-3.2.4-1.el8.noarch.rpm   945 kB/s | 811 kB     00:00    
+(72/79): python3-statsd-3.2.1-16.el8.noarch.rpm 393 kB/s |  35 kB     00:00    
+(73/79): python3-tempita-0.5.1-25.el8.noarch.rp 485 kB/s |  39 kB     00:00    
+(74/79): python3-vine-1.3.0-4.el8.noarch.rpm    287 kB/s |  34 kB     00:00    
+(75/79): python3-swiftclient-3.10.1-2.el8.noarc 934 kB/s | 175 kB     00:00    
+(76/79): python3-webob-1.8.6-3.el8.noarch.rpm   1.1 MB/s | 253 kB     00:00    
+(77/79): python3-yappi-1.2.5-1.el8.x86_64.rpm   389 kB/s |  50 kB     00:00    
+(78/79): qpid-proton-c-0.30.0-1.el8.x86_64.rpm  839 kB/s | 199 kB     00:00    
+(79/79): python3-werkzeug-1.0.1-3.el8.noarch.rp 927 kB/s | 448 kB     00:00    
+--------------------------------------------------------------------------------
+Total                                           2.3 MB/s |  23 MB     00:09     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : python3-webob-1.8.6-3.el8.noarch                      1/79 
+  Installing       : python3-sqlalchemy-1.3.2-2.module_el8.4.0+666+456f    2/79 
+  Installing       : apr-1.6.3-11.el8.x86_64                               3/79 
+  Running scriptlet: apr-1.6.3-11.el8.x86_64                               3/79 
+  Installing       : apr-util-bdb-1.6.1-6.el8.x86_64                       4/79 
+  Installing       : apr-util-openssl-1.6.1-6.el8.x86_64                   5/79 
+  Installing       : apr-util-1.6.1-6.el8.x86_64                           6/79 
+  Running scriptlet: apr-util-1.6.1-6.el8.x86_64                           6/79 
+  Installing       : python3-vine-1.3.0-4.el8.noarch                       7/79 
+  Installing       : python3-amqp-2.6.1-1.el8.noarch                       8/79 
+  Installing       : python3-tempita-0.5.1-25.el8.noarch                   9/79 
+  Installing       : python3-paste-3.2.4-1.el8.noarch                     10/79 
+  Installing       : python3-pyasn1-0.4.6-3.el8.noarch                    11/79 
+  Installing       : python3-jwt-1.6.1-2.el8.noarch                       12/79 
+  Installing       : python3-greenlet-0.4.13-4.el8.x86_64                 13/79 
+  Installing       : python3-babel-2.5.1-5.el8.noarch                     14/79 
+  Installing       : python3-jinja2-2.10.1-2.el8_0.noarch                 15/79 
+  Installing       : python3-oauthlib-2.1.0-1.el8.noarch                  16/79 
+  Installing       : python3-pyasn1-modules-0.4.6-3.el8.noarch            17/79 
+  Installing       : python3-ldap-3.3.1-1.el8.x86_64                      18/79 
+  Installing       : python3-ldappool-2.4.0-5.el8.noarch                  19/79 
+  Installing       : python3-paste-deploy-2.1.0-3.el8.noarch              20/79 
+  Installing       : python3-kombu-1:4.6.11-2.el8.noarch                  21/79 
+  Installing       : httpd-tools-2.4.37-39.module_el8.4.0+778+c970deab.   22/79 
+  Installing       : qpid-proton-c-0.30.0-1.el8.x86_64                    23/79 
+  Installing       : python3-qpid-proton-0.30.0-1.el8.x86_64              24/79 
+  Installing       : python3-pyngus-2.3.0-4.el8.noarch                    25/79 
+  Installing       : python3-yappi-1.2.5-1.el8.x86_64                     26/79 
+  Installing       : python3-werkzeug-1.0.1-3.el8.noarch                  27/79 
+  Installing       : python3-swiftclient-3.10.1-2.el8.noarch              28/79 
+  Installing       : python3-statsd-3.2.1-16.el8.noarch                   29/79 
+  Installing       : python3-sqlparse-0.3.1-3.el8.noarch                  30/79 
+  Installing       : python3-migrate-0.13.0-1.el8.noarch                  31/79 
+  Installing       : python3-scrypt-0.8.0-11.el8.x86_64                   32/79 
+  Installing       : python3-pyrsistent-0.16.0-3.el8.x86_64               33/79 
+  Installing       : python3-jsonschema-3.2.0-5.el8.noarch                34/79 
+  Installing       : python3-passlib-1.7.2-3.el8.noarch                   35/79 
+  Installing       : python3-oslo-upgradecheck-1.1.1-2.el8.noarch         36/79 
+  Installing       : python3-monotonic-1.5-5.el8.noarch                   37/79 
+  Installing       : python3-futurist-2.3.0-2.el8.noarch                  38/79 
+  Installing       : python3-future-0.18.2-3.el8.noarch                   39/79 
+  Installing       : python3-fasteners-0.14.1-20.el8.noarch               40/79 
+  Installing       : python3-editor-1.0.4-4.el8.noarch                    41/79 
+  Installing       : python3-alembic-1.4.2-5.el8.noarch                   42/79 
+  Installing       : python3-defusedxml-0.6.0-4.el8.noarch                43/79 
+  Installing       : python3-pysaml2-6.1.0-1.el8.noarch                   44/79 
+  Installing       : python3-cachetools-4.1.1-2.el8.noarch                45/79 
+  Installing       : python3-aniso8601-8.0.0-1.el8.noarch                 46/79 
+  Installing       : python-pycadf-common-3.1.1-2.el8.noarch              47/79 
+  Installing       : python3-pycadf-3.1.1-2.el8.noarch                    48/79 
+  Installing       : python-oslo-policy-lang-3.5.0-2.el8.noarch           49/79 
+  Installing       : python3-oslo-policy-3.5.0-2.el8.noarch               50/79 
+  Installing       : python-oslo-middleware-lang-4.1.1-2.el8.noarch       51/79 
+  Installing       : python3-oslo-middleware-4.1.1-2.el8.noarch           52/79 
+  Installing       : python-oslo-db-lang-8.4.1-1.el8.noarch               53/79 
+  Installing       : python3-oslo-db-8.4.1-1.el8.noarch                   54/79 
+  Installing       : python-oslo-concurrency-lang-4.3.1-1.el8.noarch      55/79 
+  Installing       : python3-oslo-concurrency-4.3.1-1.el8.noarch          56/79 
+  Installing       : python-oslo-cache-lang-2.6.2-1.el8.noarch            57/79 
+  Installing       : python3-oslo-cache-2.6.2-1.el8.noarch                58/79 
+  Installing       : python3-keystonemiddleware-9.1.0-2.el8.noarch        59/79 
+  Installing       : python3-repoze-lru-0.7-6.el8.noarch                  60/79 
+  Installing       : python3-routes-2.4.1-12.el8.noarch                   61/79 
+  Installing       : python3-bcrypt-3.1.7-3.el8.x86_64                    62/79 
+  Installing       : python3-dns-1.15.0-10.el8.noarch                     63/79 
+  Installing       : python3-eventlet-0.25.2-3.1.el8.noarch               64/79 
+  Installing       : python3-oslo-service-2.4.0-2.el8.noarch              65/79 
+  Installing       : python3-oslo-messaging-12.5.2-1.el8.noarch           66/79 
+  Installing       : python3-osprofiler-3.4.0-2.el8.noarch                67/79 
+  Installing       : centos-logos-httpd-85.8-1.el8.noarch                 68/79 
+  Installing       : python3-itsdangerous-0.24-14.el8.noarch              69/79 
+  Installing       : python3-click-6.7-8.el8.noarch                       70/79 
+  Installing       : python3-flask-1:1.1.1-1.el8.noarch                   71/79 
+  Installing       : python3-flask-restful-0.3.8-4.el8.noarch             72/79 
+  Installing       : python3-keystone-1:18.0.0-1.el8.noarch               73/79 
+  Running scriptlet: httpd-filesystem-2.4.37-39.module_el8.4.0+778+c970   74/79 
+  Installing       : httpd-filesystem-2.4.37-39.module_el8.4.0+778+c970   74/79 
+  Installing       : mod_http2-1.15.7-3.module_el8.4.0+778+c970deab.x86   75/79 
+  Installing       : httpd-2.4.37-39.module_el8.4.0+778+c970deab.x86_64   76/79 
+  Running scriptlet: httpd-2.4.37-39.module_el8.4.0+778+c970deab.x86_64   76/79 
+  Installing       : python3-mod_wsgi-4.6.4-4.el8.x86_64                  77/79 
+  Running scriptlet: openstack-keystone-1:18.0.0-1.el8.noarch             78/79 
+  Installing       : openstack-keystone-1:18.0.0-1.el8.noarch             78/79 
+  Running scriptlet: openstack-keystone-1:18.0.0-1.el8.noarch             78/79 
+  Installing       : python3-heatclient-2.2.1-2.el8.noarch                79/79 
+  Running scriptlet: httpd-2.4.37-39.module_el8.4.0+778+c970deab.x86_64   79/79 
+  Running scriptlet: python3-heatclient-2.2.1-2.el8.noarch                79/79 
+Line is not an assignment at '/etc/sysctl.d/99-sysctl.conf:27': (null)
+Couldn't write '/etc/neutron/dnsmasq-neutron.conf' to 'dnsmasq_config_file', ignoring: No such file or directory
+warning: %transfiletriggerin(systemd-239-45.el8_4.3.x86_64) scriptlet failed, exit status 1
+
+Error in <unknown> scriptlet in rpm package python3-heatclient
+[/usr/lib/tmpfiles.d/rabbitmq-server.conf:1] Line references path below legacy directory /var/run/, updating /var/run/rabbitmq → /run/rabbitmq; please update the tmpfiles.d/ drop-in file accordingly.
+
+  Verifying        : apr-1.6.3-11.el8.x86_64                               1/79 
+  Verifying        : apr-util-1.6.1-6.el8.x86_64                           2/79 
+  Verifying        : apr-util-bdb-1.6.1-6.el8.x86_64                       3/79 
+  Verifying        : apr-util-openssl-1.6.1-6.el8.x86_64                   4/79 
+  Verifying        : httpd-2.4.37-39.module_el8.4.0+778+c970deab.x86_64    5/79 
+  Verifying        : httpd-filesystem-2.4.37-39.module_el8.4.0+778+c970    6/79 
+  Verifying        : httpd-tools-2.4.37-39.module_el8.4.0+778+c970deab.    7/79 
+  Verifying        : mod_http2-1.15.7-3.module_el8.4.0+778+c970deab.x86    8/79 
+  Verifying        : python3-babel-2.5.1-5.el8.noarch                      9/79 
+  Verifying        : python3-click-6.7-8.el8.noarch                       10/79 
+  Verifying        : python3-greenlet-0.4.13-4.el8.x86_64                 11/79 
+  Verifying        : python3-itsdangerous-0.24-14.el8.noarch              12/79 
+  Verifying        : python3-jinja2-2.10.1-2.el8_0.noarch                 13/79 
+  Verifying        : python3-ldap-3.3.1-1.el8.x86_64                      14/79 
+  Verifying        : python3-mod_wsgi-4.6.4-4.el8.x86_64                  15/79 
+  Verifying        : python3-sqlalchemy-1.3.2-2.module_el8.4.0+666+456f   16/79 
+  Verifying        : centos-logos-httpd-85.8-1.el8.noarch                 17/79 
+  Verifying        : python3-dns-1.15.0-10.el8.noarch                     18/79 
+  Verifying        : python3-jwt-1.6.1-2.el8.noarch                       19/79 
+  Verifying        : python3-oauthlib-2.1.0-1.el8.noarch                  20/79 
+  Verifying        : python3-bcrypt-3.1.7-3.el8.x86_64                    21/79 
+  Verifying        : python3-pyasn1-0.4.6-3.el8.noarch                    22/79 
+  Verifying        : python3-pyasn1-modules-0.4.6-3.el8.noarch            23/79 
+  Verifying        : python3-repoze-lru-0.7-6.el8.noarch                  24/79 
+  Verifying        : python3-routes-2.4.1-12.el8.noarch                   25/79 
+  Verifying        : openstack-keystone-1:18.0.0-1.el8.noarch             26/79 
+  Verifying        : python-oslo-cache-lang-2.6.2-1.el8.noarch            27/79 
+  Verifying        : python-oslo-concurrency-lang-4.3.1-1.el8.noarch      28/79 
+  Verifying        : python-oslo-db-lang-8.4.1-1.el8.noarch               29/79 
+  Verifying        : python-oslo-middleware-lang-4.1.1-2.el8.noarch       30/79 
+  Verifying        : python-oslo-policy-lang-3.5.0-2.el8.noarch           31/79 
+  Verifying        : python-pycadf-common-3.1.1-2.el8.noarch              32/79 
+  Verifying        : python3-alembic-1.4.2-5.el8.noarch                   33/79 
+  Verifying        : python3-amqp-2.6.1-1.el8.noarch                      34/79 
+  Verifying        : python3-aniso8601-8.0.0-1.el8.noarch                 35/79 
+  Verifying        : python3-cachetools-4.1.1-2.el8.noarch                36/79 
+  Verifying        : python3-defusedxml-0.6.0-4.el8.noarch                37/79 
+  Verifying        : python3-editor-1.0.4-4.el8.noarch                    38/79 
+  Verifying        : python3-eventlet-0.25.2-3.1.el8.noarch               39/79 
+  Verifying        : python3-fasteners-0.14.1-20.el8.noarch               40/79 
+  Verifying        : python3-flask-1:1.1.1-1.el8.noarch                   41/79 
+  Verifying        : python3-flask-restful-0.3.8-4.el8.noarch             42/79 
+  Verifying        : python3-future-0.18.2-3.el8.noarch                   43/79 
+  Verifying        : python3-futurist-2.3.0-2.el8.noarch                  44/79 
+  Verifying        : python3-heatclient-2.2.1-2.el8.noarch                45/79 
+  Verifying        : python3-jsonschema-3.2.0-5.el8.noarch                46/79 
+  Verifying        : python3-keystone-1:18.0.0-1.el8.noarch               47/79 
+  Verifying        : python3-keystonemiddleware-9.1.0-2.el8.noarch        48/79 
+  Verifying        : python3-kombu-1:4.6.11-2.el8.noarch                  49/79 
+  Verifying        : python3-ldappool-2.4.0-5.el8.noarch                  50/79 
+  Verifying        : python3-migrate-0.13.0-1.el8.noarch                  51/79 
+  Verifying        : python3-monotonic-1.5-5.el8.noarch                   52/79 
+  Verifying        : python3-oslo-cache-2.6.2-1.el8.noarch                53/79 
+  Verifying        : python3-oslo-concurrency-4.3.1-1.el8.noarch          54/79 
+  Verifying        : python3-oslo-db-8.4.1-1.el8.noarch                   55/79 
+  Verifying        : python3-oslo-messaging-12.5.2-1.el8.noarch           56/79 
+  Verifying        : python3-oslo-middleware-4.1.1-2.el8.noarch           57/79 
+  Verifying        : python3-oslo-policy-3.5.0-2.el8.noarch               58/79 
+  Verifying        : python3-oslo-service-2.4.0-2.el8.noarch              59/79 
+  Verifying        : python3-oslo-upgradecheck-1.1.1-2.el8.noarch         60/79 
+  Verifying        : python3-osprofiler-3.4.0-2.el8.noarch                61/79 
+  Verifying        : python3-passlib-1.7.2-3.el8.noarch                   62/79 
+  Verifying        : python3-paste-3.2.4-1.el8.noarch                     63/79 
+  Verifying        : python3-paste-deploy-2.1.0-3.el8.noarch              64/79 
+  Verifying        : python3-pycadf-3.1.1-2.el8.noarch                    65/79 
+  Verifying        : python3-pyngus-2.3.0-4.el8.noarch                    66/79 
+  Verifying        : python3-pyrsistent-0.16.0-3.el8.x86_64               67/79 
+  Verifying        : python3-pysaml2-6.1.0-1.el8.noarch                   68/79 
+  Verifying        : python3-qpid-proton-0.30.0-1.el8.x86_64              69/79 
+  Verifying        : python3-scrypt-0.8.0-11.el8.x86_64                   70/79 
+  Verifying        : python3-sqlparse-0.3.1-3.el8.noarch                  71/79 
+  Verifying        : python3-statsd-3.2.1-16.el8.noarch                   72/79 
+  Verifying        : python3-swiftclient-3.10.1-2.el8.noarch              73/79 
+  Verifying        : python3-tempita-0.5.1-25.el8.noarch                  74/79 
+  Verifying        : python3-vine-1.3.0-4.el8.noarch                      75/79 
+  Verifying        : python3-webob-1.8.6-3.el8.noarch                     76/79 
+  Verifying        : python3-werkzeug-1.0.1-3.el8.noarch                  77/79 
+  Verifying        : python3-yappi-1.2.5-1.el8.x86_64                     78/79 
+  Verifying        : qpid-proton-c-0.30.0-1.el8.x86_64                    79/79 
+Installed products updated.
+
+Installed:
+  apr-1.6.3-11.el8.x86_64                                                       
+  apr-util-1.6.1-6.el8.x86_64                                                   
+  apr-util-bdb-1.6.1-6.el8.x86_64                                               
+  apr-util-openssl-1.6.1-6.el8.x86_64                                           
+  centos-logos-httpd-85.8-1.el8.noarch                                          
+  httpd-2.4.37-39.module_el8.4.0+778+c970deab.x86_64                            
+  httpd-filesystem-2.4.37-39.module_el8.4.0+778+c970deab.noarch                 
+  httpd-tools-2.4.37-39.module_el8.4.0+778+c970deab.x86_64                      
+  mod_http2-1.15.7-3.module_el8.4.0+778+c970deab.x86_64                         
+  openstack-keystone-1:18.0.0-1.el8.noarch                                      
+  python-oslo-cache-lang-2.6.2-1.el8.noarch                                     
+  python-oslo-concurrency-lang-4.3.1-1.el8.noarch                               
+  python-oslo-db-lang-8.4.1-1.el8.noarch                                        
+  python-oslo-middleware-lang-4.1.1-2.el8.noarch                                
+  python-oslo-policy-lang-3.5.0-2.el8.noarch                                    
+  python-pycadf-common-3.1.1-2.el8.noarch                                       
+  python3-alembic-1.4.2-5.el8.noarch                                            
+  python3-amqp-2.6.1-1.el8.noarch                                               
+  python3-aniso8601-8.0.0-1.el8.noarch                                          
+  python3-babel-2.5.1-5.el8.noarch                                              
+  python3-bcrypt-3.1.7-3.el8.x86_64                                             
+  python3-cachetools-4.1.1-2.el8.noarch                                         
+  python3-click-6.7-8.el8.noarch                                                
+  python3-defusedxml-0.6.0-4.el8.noarch                                         
+  python3-dns-1.15.0-10.el8.noarch                                              
+  python3-editor-1.0.4-4.el8.noarch                                             
+  python3-eventlet-0.25.2-3.1.el8.noarch                                        
+  python3-fasteners-0.14.1-20.el8.noarch                                        
+  python3-flask-1:1.1.1-1.el8.noarch                                            
+  python3-flask-restful-0.3.8-4.el8.noarch                                      
+  python3-future-0.18.2-3.el8.noarch                                            
+  python3-futurist-2.3.0-2.el8.noarch                                           
+  python3-greenlet-0.4.13-4.el8.x86_64                                          
+  python3-heatclient-2.2.1-2.el8.noarch                                         
+  python3-itsdangerous-0.24-14.el8.noarch                                       
+  python3-jinja2-2.10.1-2.el8_0.noarch                                          
+  python3-jsonschema-3.2.0-5.el8.noarch                                         
+  python3-jwt-1.6.1-2.el8.noarch                                                
+  python3-keystone-1:18.0.0-1.el8.noarch                                        
+  python3-keystonemiddleware-9.1.0-2.el8.noarch                                 
+  python3-kombu-1:4.6.11-2.el8.noarch                                           
+  python3-ldap-3.3.1-1.el8.x86_64                                               
+  python3-ldappool-2.4.0-5.el8.noarch                                           
+  python3-migrate-0.13.0-1.el8.noarch                                           
+  python3-mod_wsgi-4.6.4-4.el8.x86_64                                           
+  python3-monotonic-1.5-5.el8.noarch                                            
+  python3-oauthlib-2.1.0-1.el8.noarch                                           
+  python3-oslo-cache-2.6.2-1.el8.noarch                                         
+  python3-oslo-concurrency-4.3.1-1.el8.noarch                                   
+  python3-oslo-db-8.4.1-1.el8.noarch                                            
+  python3-oslo-messaging-12.5.2-1.el8.noarch                                    
+  python3-oslo-middleware-4.1.1-2.el8.noarch                                    
+  python3-oslo-policy-3.5.0-2.el8.noarch                                        
+  python3-oslo-service-2.4.0-2.el8.noarch                                       
+  python3-oslo-upgradecheck-1.1.1-2.el8.noarch                                  
+  python3-osprofiler-3.4.0-2.el8.noarch                                         
+  python3-passlib-1.7.2-3.el8.noarch                                            
+  python3-paste-3.2.4-1.el8.noarch                                              
+  python3-paste-deploy-2.1.0-3.el8.noarch                                       
+  python3-pyasn1-0.4.6-3.el8.noarch                                             
+  python3-pyasn1-modules-0.4.6-3.el8.noarch                                     
+  python3-pycadf-3.1.1-2.el8.noarch                                             
+  python3-pyngus-2.3.0-4.el8.noarch                                             
+  python3-pyrsistent-0.16.0-3.el8.x86_64                                        
+  python3-pysaml2-6.1.0-1.el8.noarch                                            
+  python3-qpid-proton-0.30.0-1.el8.x86_64                                       
+  python3-repoze-lru-0.7-6.el8.noarch                                           
+  python3-routes-2.4.1-12.el8.noarch                                            
+  python3-scrypt-0.8.0-11.el8.x86_64                                            
+  python3-sqlalchemy-1.3.2-2.module_el8.4.0+666+456f5f48.x86_64                 
+  python3-sqlparse-0.3.1-3.el8.noarch                                           
+  python3-statsd-3.2.1-16.el8.noarch                                            
+  python3-swiftclient-3.10.1-2.el8.noarch                                       
+  python3-tempita-0.5.1-25.el8.noarch                                           
+  python3-vine-1.3.0-4.el8.noarch                                               
+  python3-webob-1.8.6-3.el8.noarch                                              
+  python3-werkzeug-1.0.1-3.el8.noarch                                           
+  python3-yappi-1.2.5-1.el8.x86_64                                              
+  qpid-proton-c-0.30.0-1.el8.x86_64                                             
+
+Complete!
+Editing /etc/keystone/keystone.conf.
+Setting database connection: mysql+pymysql://keystone:keystoneDBPass@controller/keystone.
+'/etc/keystone/keystone.conf' -> '/tmp/006_etc_keystone_keystone.conf.iniset'
+iniset /tmp/006_etc_keystone_keystone.conf.iniset database connection mysql+pymysql://keystone:keystoneDBPass@controller/keystone
+Configuring the Fernet token provider.
+'/etc/keystone/keystone.conf' -> '/tmp/007_etc_keystone_keystone.conf.iniset'
+iniset /tmp/007_etc_keystone_keystone.conf.iniset token provider fernet
+Creating the database tables for keystone.
+Initializing Fernet key repositories.
+Bootstrapping the Identity service.
+Configuring ServerName option in /etc/httpd/conf/httpd.conf to reference controller node.
+ServerName controller
+Identity service virtual hosts enabled.
+Restarting httpd server.
+Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
+Setting Firewall and SELinux Modules 
+success
+success
+
+module keystone-httpd 1.0;
+
+require {
+        type httpd_t;
+        type keystone_var_lib_t;
+        type keystone_log_t;
+        class file { create getattr ioctl open read write };
+        class dir { add_name create write };
+}
+
+#============= httpd_t ==============
+allow httpd_t keystone_var_lib_t:dir { add_name create write };
+allow httpd_t keystone_var_lib_t:file { create open write getattr ioctl open read };
+allow httpd_t keystone_log_t:dir { add_name write };
+allow httpd_t keystone_log_t:file create;
+Waiting for keystone to come up.
+Creating service project.
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | Service Project                  |
+| domain_id   | default                          |
+| enabled     | True                             |
+| id          | 338657e928e24e7b94e1ece785058d5b |
+| is_domain   | False                            |
+| name        | service                          |
+| options     | {}                               |
+| parent_id   | default                          |
+| tags        | []                               |
++-------------+----------------------------------+
+Creating demo project.
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | Demo Project                     |
+| domain_id   | default                          |
+| enabled     | True                             |
+| id          | 1113bab9f43644828f8a11a2b4e932bf |
+| is_domain   | False                            |
+| name        | SkillPediaProject                |
+| options     | {}                               |
+| parent_id   | default                          |
+| tags        | []                               |
++-------------+----------------------------------+
+Creating demo user.
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | edf4d3a415e843848ebfd82407f83c12 |
+| name                | SkillPedia                       |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+Creating the user role.
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | None                             |
+| domain_id   | None                             |
+| id          | 8f089933e2d848878f16896d56589bc1 |
+| name        | myrole                           |
+| options     | {}                               |
++-------------+----------------------------------+
+Linking user role to demo project and user.
+Verifying keystone installation.
+Requesting an authentication token as an admin user.
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field      | Value                                                                                                                                                                                   |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2021-09-05T11:33:27+0000                                                                                                                                                                |
+| id         | gAAAAABhNJz3RCViSuY3CLsBmo3H_EPn3EowOhVg6j8rJ0oAOG26_CXfy-71w7CZPPymgFKyRziQq4WM1oU90J0SASA6ClZzr_StXmYxhB4fty-nutIUYug4Bjdv4uORJ5UTc6o3jXovYBkrmuEiZOemuq8U3OdFaxw7Bb3-1dW4LFs7DAsWKrM |
+| project_id | 95b394c19fd64dc5b1a81b1898254e38                                                                                                                                                        |
+| user_id    | 85d4ee7cd7014357b5160b6c3e06f0af                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Requesting an authentication token for the demo user.
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field      | Value                                                                                                                                                                                   |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2021-09-05T11:33:28+0000                                                                                                                                                                |
+| id         | gAAAAABhNJz4BlunmtfSSdlUwoGVqzrntGqWTTSzBH4myv7FquER7lfY2ehyKYftHfiuNl6Nkqaqc7zM7JLk8pp2AZtLap7tOHyl1UvqKJuViO2Q8oLmdHd0t9CLNp5c5akP4RxaBcOUFp9OLwHLEn7lcGwfgakmrlsBPOlXoEmlSkuPABJKfng |
+| project_id | 1113bab9f43644828f8a11a2b4e932bf                                                                                                                                                        |
+| user_id    | edf4d3a415e843848ebfd82407f83c12                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

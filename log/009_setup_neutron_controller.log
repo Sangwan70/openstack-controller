@@ -1,0 +1,66 @@
+Setting up database for neutron.
+Waiting for database server to come up.
+mysql cmd: CREATE DATABASE neutron.
+mysql cmd: GRANT ALL ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'neutronDBPass';.
+mysql cmd: GRANT ALL ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'neutronDBPass';.
+Waiting for keystone to come up.
+Creating neutron user and giving it admin role under service tenant.
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | c22f23b188304d62bffd7914e0d7287e |
+| name                | neutron                          |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+Registering neutron with keystone so that other services can locate it.
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | OpenStack Networking             |
+| enabled     | True                             |
+| id          | 9c586cdcddd042e2a56e4a7c3b18d6da |
+| name        | neutron                          |
+| type        | network                          |
++-------------+----------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | fc8b223193b543a582e1510e429d3678 |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 9c586cdcddd042e2a56e4a7c3b18d6da |
+| service_name | neutron                          |
+| service_type | network                          |
+| url          | http://controller:9696           |
++--------------+----------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | aefc0392bd864487af635da2babf46a0 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 9c586cdcddd042e2a56e4a7c3b18d6da |
+| service_name | neutron                          |
+| service_type | network                          |
+| url          | http://controller:9696           |
++--------------+----------------------------------+
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | a2d0f31c4d834f22908af00784e367cd |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 9c586cdcddd042e2a56e4a7c3b18d6da |
+| service_name | neutron                          |
+| service_type | network                          |
+| url          | http://controller:9696           |
++--------------+----------------------------------+

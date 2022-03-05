@@ -1,0 +1,31 @@
++-----------------------------+-----------------------------------------------+
+| Field                       | Value                                         |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig           | MANUAL                                        |
+| OS-EXT-AZ:availability_zone |                                               |
+| OS-EXT-STS:power_state      | NOSTATE                                       |
+| OS-EXT-STS:task_state       | scheduling                                    |
+| OS-EXT-STS:vm_state         | building                                      |
+| OS-SRV-USG:launched_at      | None                                          |
+| OS-SRV-USG:terminated_at    | None                                          |
+| accessIPv4                  |                                               |
+| accessIPv6                  |                                               |
+| addresses                   |                                               |
+| adminPass                   | E83Gd4EZrzZY                                  |
+| config_drive                |                                               |
+| created                     | 2021-09-05T13:39:57Z                          |
+| flavor                      | m1.nano (0)                                   |
+| hostId                      |                                               |
+| id                          | 170a7e07-e425-4b26-9a1d-4608e18f6d4f          |
+| image                       | cirros (63a38f94-4bb8-4934-a69f-a7caf84af60d) |
+| key_name                    | mykey                                         |
+| name                        | private-instance                              |
+| progress                    | 0                                             |
+| project_id                  | 1113bab9f43644828f8a11a2b4e932bf              |
+| properties                  |                                               |
+| security_groups             | name='1bfadc2e-9c7d-4db3-b50c-dd5ddc66eb23'   |
+| status                      | BUILD                                         |
+| updated                     | 2021-09-05T13:39:57Z                          |
+| user_id                     | edf4d3a415e843848ebfd82407f83c12              |
+| volumes_attached            |                                               |
++-----------------------------+-----------------------------------------------+
